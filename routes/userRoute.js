@@ -4,9 +4,9 @@ import { Add, Edit, Delete, List } from '../controllers/userController.js';
 
 const userRoute = Router();
 
-userRoute.post('/add', Add);
-userRoute.post('/edit', Edit);
-userRoute.post('/delete', Delete);
-userRoute.get('/list', List);
+userRoute.post('/user/add', Add);
+userRoute.post('/user/edit', Edit);
+userRoute.post('/user/delete', Delete);
+userRoute.get('/user/list', List);
 
 export default userRoute;

@@ -13,14 +13,22 @@ app.use('/api/', userRoute);
 
 //error handling
 app.use((error, req, res, next) => {
-  res
-    .status(error.status)
-    .json({
-      message: error.message,
-      errorDetails: error.errorDetails || error,
-    });
+  res.status(error.status).json({
+    message: error.message,
+    errorDetails: error.errorDetails || error,
+  });
 });
 
 try {
-  app.listen(process.env.PORT || 4001);
+  if (db) {
+    await dbConn
+      .authenticate()
+      .then(() => {
+        console.log('Database Connected');
+      })
+      .catch((error) => {
+        throw error;
+      });
+    module.exports = app.listen(process.env.PORT || 8080);
+  }
 } catch (error) {}
